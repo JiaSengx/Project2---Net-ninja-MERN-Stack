@@ -2,7 +2,10 @@
   <app-navbar></app-navbar>
   <div class="pages">
     <div class="home">
-      <h1>Home</h1>
+      <div class="workouts" *ngFor="let workout of workouts$|async">
+
+        <app-workout-detail [workout]="workout"></app-workout-detail>
+      </div>
     </div>
   </div>
 </div>

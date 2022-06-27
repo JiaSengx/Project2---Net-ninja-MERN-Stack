@@ -3,9 +3,9 @@
   <div class="pages">
     <div class="home">
       <div class="workouts" *ngFor="let workout of workouts$|async">
-
         <app-workout-detail [workout]="workout"></app-workout-detail>
       </div>
+      <app-workout-form></app-workout-form>
     </div>
   </div>
 </div>

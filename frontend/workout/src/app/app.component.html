@@ -2,10 +2,14 @@
   <app-navbar></app-navbar>
   <div class="pages">
     <div class="home">
-      <div class="workouts" *ngFor="let workout of workouts$|async">
-        <app-workout-detail [workout]="workout"></app-workout-detail>
+      <div class="workouts-container">
+        <div class="workouts" *ngFor="let workout of workouts$|async">
+          <app-workout-detail [workout]="workout"></app-workout-detail>
+        </div>
       </div>
-      <app-workout-form></app-workout-form>
+      <div class="workout-form">
+        <app-workout-form></app-workout-form>
+      </div>
     </div>
   </div>
 </div>

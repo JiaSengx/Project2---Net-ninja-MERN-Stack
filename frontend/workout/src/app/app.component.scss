@@ -1,0 +1,13 @@
+.home {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.workouts-container {
+  flex: 0.7;
+}
+
+.workout-form {
+  flex: 0.3;
+  margin-left: 20px;
+}

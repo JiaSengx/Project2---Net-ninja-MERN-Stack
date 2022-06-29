@@ -19,11 +19,12 @@ export class WorkoutFormComponent implements OnInit {
     const workout: WorkoutDTO = { ...workoutForm.value };
     this.workoutService.addWorkout(workout).subscribe(
       (workout) => {
-        console.log(workout);
+        this.workoutService.onNewWorkoutSubject.next(true);
       },
       (err) => {
         this.error = err.error;
       }
     );
+    workoutForm.reset();
   }
 }

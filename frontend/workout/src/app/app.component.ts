@@ -15,5 +15,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.workouts$ = this.workoutService.getAllWorkouts();
+    this.workoutService.onNewWorkoutSubject.subscribe((data: any) => {
+      if (data) this.workouts$ = this.workoutService.getAllWorkouts();
+    });
   }
 }

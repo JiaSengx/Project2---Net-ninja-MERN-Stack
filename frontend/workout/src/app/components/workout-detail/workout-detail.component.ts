@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { WorkoutService } from 'src/app/services/workout.service';
+import { RemoveWorkout } from 'src/app/store/workout-action';
 
 @Component({
   selector: 'app-workout-detail',
@@ -8,7 +11,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class WorkoutDetailComponent implements OnInit {
   @Input('workout') workout: any;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
+
+  onRemoveWorkout(workoutId: string) {
+    this.store.dispatch(new RemoveWorkout(workoutId));
+    // this.workoutService.deleteWorkout(workoutId).subscribe((data: any) => {
+    //   this.workoutService.onNewWorkoutSubject.next(true);
+    // });
+  }
 }

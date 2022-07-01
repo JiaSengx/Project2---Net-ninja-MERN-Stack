@@ -2,6 +2,6 @@
   <h4>{{workout.title}}</h4>
   <p><strong>Load (kg):</strong>{{workout.load}}</p>
   <p><strong>Load (kg):</strong>{{workout.reps}}</p>
-  <p>{{workout.createdAt}}</p>
-  <span (click)="onRemoveWorkout(workout._id)">delete</span>
+  <p>{{workout.createdAt|dateAgo}}</p>
+  <span class="material-symbols-outlined" (click)="onRemoveWorkout(workout._id)">delete</span>
 </div>

@@ -1,0 +1,15 @@
+.workout-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  color: #333;
+  background: #fff;
+  transition: background 0.4s;
+}
+
+.workout-details span:hover {
+  background: #f1f1f1;
+}

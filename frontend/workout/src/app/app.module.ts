@@ -13,6 +13,7 @@ import { WorkoutDetailComponent } from './components/workout-detail/workout-deta
 import { WorkoutFormComponent } from './components/workout-form/workout-form.component';
 
 import { WorkoutState } from './store/workout-state';
+import { DateAgoPipe } from './shared/pipe/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { WorkoutState } from './store/workout-state';
     NavbarComponent,
     WorkoutDetailComponent,
     WorkoutFormComponent,
+    DateAgoPipe,
   ],
   imports: [
     BrowserModule,

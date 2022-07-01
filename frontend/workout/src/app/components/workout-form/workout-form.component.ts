@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 import { WorkoutDTO } from 'src/app/models/workout-dto';
 import { WorkoutService } from 'src/app/services/workout.service';
-import { AddWorkout } from '../../store/workout-action';
+import { WorkoutState } from 'src/app/store/workout-state';
+import { AddWorkout, ResetError } from '../../store/workout-action';
 
 @Component({
   selector: 'app-workout-form',
@@ -12,7 +14,10 @@ import { AddWorkout } from '../../store/workout-action';
   styleUrls: ['./workout-form.component.scss'],
 })
 export class WorkoutFormComponent implements OnInit {
-  error: any = null;
+  @Select(WorkoutState.getError)
+  error$!: Observable<any>;
+
+  // error: any = null;
 
   constructor(private store: Store) {}
 
@@ -31,6 +36,9 @@ export class WorkoutFormComponent implements OnInit {
     //     this.error = err.error;
     //   }
     // );
-    workoutForm.reset();
+    if (workoutForm.valid) {
+      this.store.dispatch(new ResetError());
+      workoutForm.reset();
+    }
   }
 }

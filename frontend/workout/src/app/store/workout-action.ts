@@ -14,3 +14,8 @@ export class RemoveWorkout {
   static readonly type = '[WORKOUT] REMOVE WORKOUT';
   constructor(public payload: string) {}
 }
+
+export class ResetError{
+  static readonly type = '[WORKOUT] RESET ERROR';
+  constructor() { }
+}

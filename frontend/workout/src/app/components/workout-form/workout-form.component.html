@@ -2,17 +2,20 @@
   <h3>Add a New Workout</h3>
 
   <label for="title">Exercise Title:</label>
-  <input type="text" id="title" name="title" ngModel required #title="ngModel" />
+  <input type="text" id="title" name="title" ngModel required #title="ngModel"
+    [class.error]="(error$|async)?.emptyFields?.includes('title')" />
   <p class="form-error" *ngIf="title.errors?.required && title.touched">*Exercise Title is required</p>
 
   <label for="load">Load (in kg):</label>
-  <input type="number" id="load" name="load" ngModel required #load="ngModel" />
+  <input type="number" id="load" name="load" ngModel required #load="ngModel"
+    [class.error]="(error$|async)?.emptyFields?.includes('load')" />
   <p class="form-error" *ngIf="load.errors?.required && load.touched">*Load is require</p>
 
   <label for="reps">Reps:</label>
-  <input type="number" id="reps" name="reps" ngModel required #reps="ngModel" />
+  <input type="number" id="reps" name="reps" ngModel required #reps="ngModel"
+    [class.error]="(error$|async)?.emptyFields?.includes('reps')" />
   <p class="form-error" *ngIf="reps.errors?.required && reps.touched">*Reps is require</p>
 
   <button type="submit">Add Workout</button>
-  <div class="error" *ngIf="error">{{ error.error }}</div>
+  <div class="error" *ngIf="error$|async">{{ (error$|async).error }}</div>
 </form>

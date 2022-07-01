@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, Selector } from '@ngxs/store';
-import { take, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
-import { WorkoutDTO } from '../models/workout-dto';
 import { WorkoutService } from '../services/workout.service';
-import { GetWorkout, AddWorkout, RemoveWorkout } from './workout-action';
+import {
+  GetWorkout,
+  AddWorkout,
+  RemoveWorkout,
+  ResetError,
+} from './workout-action';
 import { WorkoutModel } from './workout-model';
 
-export class WorkoutStateModel {
-  workouts!: WorkoutModel[];
+interface WorkoutStateModel {
+  workouts: WorkoutModel[];
+  error: any;
 }
 
 @State<WorkoutStateModel>({
   name: 'workout',
   defaults: {
     workouts: [],
+    error: '',
   },
 })
 @Injectable()
@@ -24,6 +30,11 @@ export class WorkoutState {
   @Selector()
   static getWorkouts(state: WorkoutStateModel) {
     return state.workouts;
+  }
+
+  @Selector()
+  static getError(state: WorkoutStateModel) {
+    return state.error;
   }
 
   @Action(GetWorkout)
@@ -44,11 +55,18 @@ export class WorkoutState {
     { payload }: AddWorkout
   ) {
     return this.workoutService.addWorkout(payload).pipe(
-      tap((result: any) => {
-        patchState({
-          workouts: [result, ...getState().workouts],
-        });
-      })
+      tap(
+        (result: any) => {
+          patchState({
+            workouts: [result, ...getState().workouts],
+          });
+        },
+        (err: any) => {
+          patchState({
+            error: err.error,
+          });
+        }
+      )
     );
   }
 
@@ -58,16 +76,27 @@ export class WorkoutState {
     { payload }: RemoveWorkout
   ) {
     return this.workoutService.deleteWorkout(payload).pipe(
-      tap(() => {
-        patchState({
-          workouts: getState().workouts.filter(
-            (workout) => workout._id != payload
-          ),
-        });
-      })
+      tap(
+        () => {
+          patchState({
+            workouts: getState().workouts.filter(
+              (workout) => workout._id != payload
+            ),
+          });
+        },
+        (err: any) => {
+          patchState({
+            error: err.error.error,
+          });
+        }
+      )
     );
-    // patchState({
-    //   workouts: getState().workouts.filter((a) => a._id != payload),
-    // });
+  }
+
+  @Action(ResetError)
+  resetError({ patchState }: StateContext<WorkoutStateModel>) {
+    patchState({
+      error: null,
+    });
   }
 }

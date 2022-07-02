@@ -1,3 +1,11 @@
 .form-error{
   color: red;
 }
+
+:host{
+  display: block;
+}
+
+.--disabled{
+  cursor: not-allowed;
+}

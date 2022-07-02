@@ -6,12 +6,11 @@
         <!-- <div class="workouts" *ngFor="let workout of workouts2$|async">
           <app-workout-detail [workout]="workout"></app-workout-detail>
         </div> -->
-        <app-workout-detail @workoutListState class="workouts" *ngFor="let workout of workouts2$|async"
-          [workout]="workout">
+        <app-workout-detail @fade-in-out class="workouts" *ngFor="let workout of workouts2$|async" [workout]="workout">
         </app-workout-detail>
       </div>
       <div class="workout-form">
-        <app-workout-form></app-workout-form>
+        <app-workout-form @slide-from-left @fade-in></app-workout-form>
       </div>
     </div>
   </div>

@@ -16,6 +16,6 @@
     [class.error]="(error$|async)?.emptyFields?.includes('reps')" />
   <p class="form-error" *ngIf="reps.errors?.required && reps.touched">*Reps is require</p>
 
-  <button type="submit">Add Workout</button>
+  <button type="submit" [disabled]="workoutForm.invalid" [class.--disabled]="workoutForm.invalid">Add Workout</button>
   <div class="error" *ngIf="error$|async">{{ (error$|async).error }}</div>
 </form>

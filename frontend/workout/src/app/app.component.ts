@@ -7,13 +7,29 @@ import { WorkoutService } from './services/workout.service';
 import { WorkoutState } from './store/workout-state';
 import { GetWorkout } from './store/workout-action';
 import { WorkoutModel } from './store/workout-model';
-import { workoutListTrigger } from './app.animation';
+import {
+  fadeInOut,
+  fadeIn,
+  fadeOut,
+  slideDown,
+  slideUp,
+  slideFromRight,
+  slideFromLeft,
+} from './app.animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [workoutListTrigger],
+  animations: [
+    fadeInOut,
+    fadeIn,
+    fadeOut,
+    slideDown,
+    slideUp,
+    slideFromRight,
+    slideFromLeft,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'workout';

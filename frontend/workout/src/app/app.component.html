@@ -6,7 +6,8 @@
         <!-- <div class="workouts" *ngFor="let workout of workouts2$|async">
           <app-workout-detail [workout]="workout"></app-workout-detail>
         </div> -->
-        <app-workout-detail class="workouts" *ngFor="let workout of workouts2$|async" [workout]="workout">
+        <app-workout-detail @workoutListState class="workouts" *ngFor="let workout of workouts2$|async"
+          [workout]="workout">
         </app-workout-detail>
       </div>
       <div class="workout-form">

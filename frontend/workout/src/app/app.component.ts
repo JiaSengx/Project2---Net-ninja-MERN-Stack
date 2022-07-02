@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 
 import { Observable, of } from 'rxjs';
+
 import { WorkoutService } from './services/workout.service';
 import { WorkoutState } from './store/workout-state';
-import { GetWorkout, RemoveWorkout } from './store/workout-action';
+import { GetWorkout } from './store/workout-action';
 import { WorkoutModel } from './store/workout-model';
+import { workoutListTrigger } from './app.animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [workoutListTrigger],
 })
 export class AppComponent implements OnInit {
   title = 'workout';

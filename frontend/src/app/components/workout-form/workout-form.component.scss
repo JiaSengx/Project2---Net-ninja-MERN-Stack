@@ -1,11 +1,12 @@
-.form-error{
+.form-error {
   color: red;
 }
 
-:host{
+:host {
   display: block;
 }
 
-.--disabled{
+.--disabled {
   cursor: not-allowed;
+  opacity: 0.4;
 }

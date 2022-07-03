@@ -15,7 +15,12 @@ export class RemoveWorkout {
   constructor(public payload: string) {}
 }
 
-export class ResetError{
+export class ResetError {
   static readonly type = '[WORKOUT] RESET ERROR';
-  constructor() { }
+  constructor() {}
+}
+
+export class ToggleIsLoading {
+  static readonly type = '[WORKOUT] TOGGLE IS LOADING';
+  constructor() {}
 }

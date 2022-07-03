@@ -8,12 +8,14 @@ import {
   AddWorkout,
   RemoveWorkout,
   ResetError,
+  ToggleIsLoading,
 } from './workout-action';
 import { WorkoutModel } from './workout-model';
 
 interface WorkoutStateModel {
   workouts: WorkoutModel[];
   error: any;
+  isLoading: boolean;
 }
 
 @State<WorkoutStateModel>({
@@ -21,6 +23,7 @@ interface WorkoutStateModel {
   defaults: {
     workouts: [],
     error: '',
+    isLoading: false,
   },
 })
 @Injectable()
@@ -37,14 +40,25 @@ export class WorkoutState {
     return state.error;
   }
 
+  @Selector()
+  static getIsLoading(state: WorkoutStateModel) {
+    return state.isLoading;
+  }
+
   @Action(GetWorkout)
-  getWorkouts({ getState, patchState }: StateContext<WorkoutStateModel>) {
+  getWorkouts({
+    getState,
+    patchState,
+    dispatch,
+  }: StateContext<WorkoutStateModel>) {
+    dispatch(new ToggleIsLoading());
     return this.workoutService.getAllWorkouts().pipe(
       tap((result: any) => {
         patchState({
           ...getState(),
           workouts: result,
         });
+         dispatch(new ToggleIsLoading());
       })
     );
   }
@@ -97,6 +111,13 @@ export class WorkoutState {
   resetError({ patchState }: StateContext<WorkoutStateModel>) {
     patchState({
       error: null,
+    });
+  }
+
+  @Action(ToggleIsLoading)
+  toggleIsLoading({ getState, patchState }: StateContext<WorkoutStateModel>) {
+    patchState({
+      isLoading: !getState().isLoading,
     });
   }
 }

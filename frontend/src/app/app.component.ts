@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
   @Select(WorkoutState.getWorkouts)
   workouts2$!: Observable<WorkoutModel[]>;
 
+  @Select(WorkoutState.getIsLoading)
+  isLoading$!: Observable<boolean>;
+
   constructor(private store: Store) {
     // this.workouts2$ = this.store.select((state) => state.workout.workouts); // without using select to get data
   }

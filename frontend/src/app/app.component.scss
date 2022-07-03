@@ -3,6 +3,12 @@
   flex-wrap: wrap;
 }
 
+@media screen and (width < 481px) {
+  .home {
+    display: inline;
+  }
+}
+
 .workouts-container {
   flex: 0.7;
 }

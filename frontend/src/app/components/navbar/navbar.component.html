@@ -1,7 +1,13 @@
 <header>
   <div class="container">
-    <a href="/">
-      <h1>Workout Buddy</h1>
+    <a routerLink="home">
+      <h1 routerLinkActive="active">Workout Buddy</h1>
+    </a>
+    <a routerLink="/">
+      <p routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Login</p>
+    </a>
+    <a routerLink="signup">
+      <p routerLinkActive="active">Sign up</p>
     </a>
   </div>
 </header>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { WorkoutService } from '../services/workout.service';
+import { WorkoutService } from '../../services/workout.service';
 import {
   GetWorkout,
   AddWorkout,

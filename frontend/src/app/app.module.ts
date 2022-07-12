@@ -13,8 +13,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { WorkoutDetailComponent } from './components/workout-detail/workout-detail.component';
 import { WorkoutFormComponent } from './components/workout-form/workout-form.component';
 
-import { WorkoutState } from './store/workout-state';
+import { WorkoutState } from './store/workout/workout-state';
 import { DateAgoPipe } from './shared/pipe/date-ago.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -23,6 +30,9 @@ import { DateAgoPipe } from './shared/pipe/date-ago.pipe';
     WorkoutDetailComponent,
     WorkoutFormComponent,
     DateAgoPipe,
+    LoginComponent,
+    HomeComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +42,7 @@ import { DateAgoPipe } from './shared/pipe/date-ago.pipe';
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

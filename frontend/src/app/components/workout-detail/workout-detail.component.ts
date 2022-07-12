@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { WorkoutService } from 'src/app/services/workout.service';
-import { RemoveWorkout } from 'src/app/store/workout-action';
+import { RemoveWorkout } from 'src/app/store/workout/workout-action';
 
 @Component({
   selector: 'app-workout-detail',

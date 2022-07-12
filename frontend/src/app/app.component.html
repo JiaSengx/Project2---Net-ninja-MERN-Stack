@@ -1,18 +1,4 @@
 <div class="app">
   <app-navbar></app-navbar>
-  <div class="pages">
-    <div class="home">
-      <span class="loader" *ngIf="isLoading$|async"></span>
-      <div class="workouts-container">
-        <!-- <div class="workouts" *ngFor="let workout of workouts2$|async">
-          <app-workout-detail [workout]="workout"></app-workout-detail>
-        </div> -->
-        <app-workout-detail @fade-in-out class="workouts" *ngFor="let workout of workouts2$|async" [workout]="workout">
-        </app-workout-detail>
-      </div>
-      <div class="workout-form">
-        <app-workout-form @slide-from-left @fade-in></app-workout-form>
-      </div>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

@@ -3,10 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { WorkoutDTO } from 'src/app/models/workout-dto';
-import { WorkoutService } from 'src/app/services/workout.service';
-import { WorkoutState } from 'src/app/store/workout-state';
-import { AddWorkout, ResetError } from '../../store/workout-action';
+import { WorkoutState } from 'src/app/store/workout/workout-state';
+import { AddWorkout, ResetError } from '../../store/workout/workout-action';
 
 @Component({
   selector: 'app-workout-form',

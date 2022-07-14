@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="container">
+  <div class="glass">
+    <span class="material-symbols-outlined md-100">person</span>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <i class="fa fa-user icon"></i>
+      <input type="email" id="email" name="email" placeholder="Email" class="login-input lightgrey">
+
+      <div class="test">
+        <i class="fa fa-key icon"></i>
+        <input type="password" id="password" name="password" placeholder="password" class="login-input lightgrey">
+      </div>
+
+      <!-- <div class="input-icons">
+
+        <input class="input-field" type="text" placeholder="Username">
+      </div>
+      <div class="input-icons">
+
+        <input class="input-field" type="password" placeholder="Password">
+      </div> -->
+
+
+      <button type="submit" class="login-input">Login</button>
+    </form>
+  </div>
+</div>

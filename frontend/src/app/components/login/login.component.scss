@@ -2,10 +2,22 @@ $container-height: 75vh;
 
 .material-symbols-outlined.md-100 {
   font-size: 100px;
-  background-color: rgba(0, 38, 77, 0.5);
-  border-radius: 10vmax;
   margin-top: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10vmax;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 
 .container {
   background: url('/assets/login-background.jpg') center / cover no-repeat fixed;
@@ -18,7 +30,6 @@ $container-height: 75vh;
 .glass {
   height: $container-height;
   width: 50vw;
-  text-align: center;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(20px);
@@ -30,16 +41,30 @@ $container-height: 75vh;
 .login-input {
   width: 75%;
   margin: 30px auto;
-  padding-left: 40px;
+  padding-left: 30px;
 }
 
 .login-input.lightgrey {
   background-color: #f1f1f1;
 }
 
-// icon
-.icon {
+.login-input-icon {
+  float: right;
+  margin-left: 5.5rem;
+  margin-top: -57px;
   position: absolute;
-  padding: 10px;
-  left: 5rem;
+}
+
+.login-button{
+  padding-left: 0;
+}
+
+.login-text-large{
+  color: #f1f1f1;
+  font-size: large;
+}
+
+.login-text-small{
+  color: #f1f1f1;
+  font-size: small;
 }

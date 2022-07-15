@@ -1,26 +1,20 @@
 <div class="container">
   <div class="glass">
-    <span class="material-symbols-outlined md-100">person</span>
+    <div class="login-form">
+      <span class="material-symbols-outlined md-100">person</span>
+    </div>
+
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-      <i class="fa fa-user icon"></i>
       <input type="email" id="email" name="email" placeholder="Email" class="login-input lightgrey">
+      <i class="far fa-user login-input-icon"></i>
 
-      <div class="test">
-        <i class="fa fa-key icon"></i>
-        <input type="password" id="password" name="password" placeholder="password" class="login-input lightgrey">
+      <input type="password" id="password" name="password" placeholder="Password" class="login-input lightgrey">
+      <i class="fas fa-key login-input-icon"></i>
+
+      <div class="login-form">
+        <button type="submit" class="login-input login-text-large login-button">Login</button>
+        <a routerLink="signup" class="login-text-small">Dont have account? Signup now</a>
       </div>
-
-      <!-- <div class="input-icons">
-
-        <input class="input-field" type="text" placeholder="Username">
-      </div>
-      <div class="input-icons">
-
-        <input class="input-field" type="password" placeholder="Password">
-      </div> -->
-
-
-      <button type="submit" class="login-input">Login</button>
     </form>
   </div>
 </div>

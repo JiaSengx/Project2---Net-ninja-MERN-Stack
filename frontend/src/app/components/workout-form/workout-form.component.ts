@@ -24,7 +24,6 @@ export class WorkoutFormComponent implements OnInit {
   onSubmit(workoutForm: NgForm) {
     // const { title, reps, load }: WorkoutDTO = { ...workoutForm.value };
     // const workout: WorkoutDTO = { ...workoutForm.value };
-    this.store.dispatch(new AddWorkout(workoutForm.value));
 
     // this.workoutService.addWorkout(workout).subscribe(
     //   (workout) => {
@@ -35,6 +34,7 @@ export class WorkoutFormComponent implements OnInit {
     //   }
     // );
     if (workoutForm.valid) {
+      this.store.dispatch(new AddWorkout(workoutForm.value));
       this.store.dispatch(new ResetError());
       workoutForm.reset();
     }

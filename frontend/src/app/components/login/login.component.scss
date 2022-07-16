@@ -3,12 +3,7 @@ $container-height: 75vh;
 .material-symbols-outlined.md-100 {
   font-size: 100px;
   margin-top: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border-radius: 10vmax;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .login-form {
@@ -18,6 +13,14 @@ $container-height: 75vh;
   flex-direction: column;
 }
 
+.glass-bg {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
 
 .container {
   background: url('/assets/login-background.jpg') center / cover no-repeat fixed;
@@ -27,15 +30,9 @@ $container-height: 75vh;
   border-radius: 10px;
 }
 
-.glass {
+.glass-container {
   height: $container-height;
   width: 50vw;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .login-input {
@@ -55,16 +52,34 @@ $container-height: 75vh;
   position: absolute;
 }
 
-.login-button{
+.login-button {
   padding-left: 0;
+  margin-bottom: 10px;
 }
 
-.login-text-large{
+.login-link {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-form-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.login-text-large {
   color: #f1f1f1;
   font-size: large;
 }
 
-.login-text-small{
-  color: #f1f1f1;
+.login-text-small {
   font-size: small;
+}
+
+.login-form-error {
+  width: 50%;
+  margin: -15px auto;
 }

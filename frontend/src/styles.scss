@@ -4,6 +4,14 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
+.form-error {
+  color: red;
+}
+
+.--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
 /* layout */
 :root {
   --primary: #1aac83;
@@ -13,7 +21,6 @@ body {
   background: #f1f1f1;
   margin: 0;
   font-family: 'Poppins';
-  
 }
 header {
   background: #fff;

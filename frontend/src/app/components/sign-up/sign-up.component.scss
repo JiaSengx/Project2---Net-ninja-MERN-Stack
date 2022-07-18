@@ -1,0 +1,79 @@
+$container-height: 75vh;
+
+.container {
+  background: url('/assets/login-background.jpg') center / cover no-repeat fixed;
+  height: $container-height;
+  width: 50vw;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.glass-bg {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-container {
+  height: $container-height;
+  width: 50vw;
+}
+
+.signup-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signup-input {
+  width: 75%;
+  margin: 30px auto;
+  padding-left: 30px;
+}
+
+.signup-input.lightgrey {
+  background-color: #f1f1f1;
+}
+
+.signup-input-icon {
+  float: right;
+  margin-left: 5.5rem;
+  margin-top: -57px;
+  position: absolute;
+}
+
+.signup-button {
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.signup-link {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signup-form-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.signup-text-large {
+  color: #f1f1f1;
+  font-size: large;
+}
+
+.signup-text-small {
+  font-size: small;
+}
+
+.signup-form-error {
+  width: 50%;
+  margin: -15px auto;
+}

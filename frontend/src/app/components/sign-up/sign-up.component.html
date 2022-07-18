@@ -1,1 +1,29 @@
-<p>sign-up works!</p>
+<div class="container">
+  <div class="glass-container glass-bg">
+    <div class="signup-form">
+      <h2>Sign Up</h2>
+    </div>
+
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+      <input type="email" id="email" name="email" placeholder="Email" class="signup-input lightgrey" required ngModel
+        #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      <i class="far fa-user signup-input-icon"></i>
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.required">*Email
+        is a required field</p>
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.pattern">*This is not a valid
+        Email</p>
+
+      <input type="password" id="password" name="password" placeholder="Password" class="signup-input lightgrey" required
+        ngModel #password="ngModel">
+      <i class="fas fa-key signup-input-icon"></i>
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="password.touched && password.errors?.required">
+        *Password is required</p>
+
+      <div class="signup-form signup-form-button">
+        <button type="submit" [disabled]="signupForm.invalid" [class.--disabled]="signupForm.invalid"
+          class="signup-input signup-text-large signup-button">Sign up</button>
+        <a routerLink="/" class="signup-text-small glass-bg signup-link">Already got account? Login now</a>
+      </div>
+    </form>
+  </div>
+</div>

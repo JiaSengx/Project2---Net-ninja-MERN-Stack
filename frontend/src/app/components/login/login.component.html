@@ -10,7 +10,7 @@
       <i class="far fa-user login-input-icon"></i>
       <p class="form-error login-form glass-bg login-form-error" *ngIf="email.touched && email.errors?.required">*Email
         is a required field</p>
-      <p class="form-error login-form glass-bg" *ngIf="email.touched && email.errors?.pattern">*This is not a valid
+      <p class="form-error login-form glass-bg login-form-error" *ngIf="email.touched && email.errors?.pattern">*This is not a valid
         Email</p>
 
       <input type="password" id="password" name="password" placeholder="Password" class="login-input lightgrey" required
@@ -24,7 +24,6 @@
           class="login-input login-text-large login-button">Login</button>
         <a routerLink="signup" class="login-text-small glass-bg login-link">Dont have account? Signup now</a>
       </div>
-
     </form>
   </div>
 </div>

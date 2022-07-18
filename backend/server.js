@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 // import routes
 const workoutRoutes = require('./routes/workout');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ msg: 'Default api route' });

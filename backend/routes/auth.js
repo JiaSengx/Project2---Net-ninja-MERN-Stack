@@ -8,7 +8,7 @@ const {
 const router = express.Router();
 
 router.get('/', getUsers);
-router.get('/:email', getUser);
+router.get('/:email/:password', getUser);
 router.post('/', createUser);
 
 module.exports = router;

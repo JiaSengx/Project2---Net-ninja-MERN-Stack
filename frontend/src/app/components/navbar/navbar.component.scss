@@ -1,3 +1,27 @@
 .active {
   color: red;
 }
+
+.container > a:nth-child(1) {
+  flex: 1 1 60%;
+}
+
+.container > a:nth-child(2) {
+  flex: 1 1 10%;
+  text-align: center;
+}
+.container > a:nth-child(3) {
+  flex: 1 1 10%;
+  text-align: center;
+}
+
+.sign-up-button {
+  background: white;
+  border: 1px solid;
+  color: var(--primary);
+  padding: 10px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}

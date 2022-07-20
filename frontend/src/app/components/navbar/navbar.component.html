@@ -3,11 +3,20 @@
     <a routerLink="home">
       <h1 routerLinkActive="active">Workout Buddy</h1>
     </a>
-    <a routerLink="/">
+    <a routerLink="/" *ngIf="!(user$|async)">
       <p routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Login</p>
     </a>
-    <a routerLink="signup">
+    <a routerLink="signup" *ngIf="!(user$|async)">
       <p routerLinkActive="active">Sign up</p>
     </a>
+
+    <p *ngIf="user$|async">
+      <i class="fas fa-user-circle"></i>
+      {{ (user$|async).name }}
+    </p>
+    <button type="button" class="sign-up-button" *ngIf="user$|async" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      Log out
+    </button>
   </div>
 </header>

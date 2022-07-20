@@ -2,14 +2,14 @@ const AuthModel = require('../models/AuthModel');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Get All user
+// Get All user --- not use in frontend only for development
 const getUsers = async (req, res) => {
   const users = await AuthModel.find({});
 
   res.status(200).json(users);
 };
 
-// Get Single user
+// Login - Get Single user
 const getUser = async (req, res) => {
   const { email, password } = req.params;
   const user = await AuthModel.findOne({ email });
@@ -25,7 +25,7 @@ const getUser = async (req, res) => {
   res.status(200).json(user);
 };
 
-// Create new user
+// Signup - Create new user
 const createUser = async (req, res) => {
   const { name, email, password } = req.body;
   let emptyFields = [];

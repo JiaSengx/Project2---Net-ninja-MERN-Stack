@@ -20,8 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 import { AppRoutingModule } from './app-routing.module';
-
-
+import { AuthState } from './store/auth/auth-state';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    NgxsModule.forRoot([WorkoutState]),
+    NgxsModule.forRoot([WorkoutState, AuthState]),
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     BrowserAnimationsModule,

@@ -3,4 +3,5 @@ export interface WorkoutModel {
   title: string;
   reps: Number;
   load: Number;
+  email: string;
 }

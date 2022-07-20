@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const appRoute: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,7 @@ const appRoute: Routes = [
         (a) => a.SignUpRouteModule
       ),
   },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error' },
 ];

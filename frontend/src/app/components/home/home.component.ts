@@ -15,6 +15,8 @@ import {
   slideFromRight,
   slideFromLeft,
 } from '../../app.animation';
+import { AuthState } from 'src/app/store/auth/auth-state';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -49,7 +51,11 @@ export class HomeComponent implements OnInit {
     // this.workoutService.onNewWorkoutSubject.subscribe((data: any) => {
     //   if (data) this.workouts$ = this.workoutService.getAllWorkouts();
     // });
-
-    this.store.dispatch(new GetWorkout());
+    this.store
+      .select(AuthState.getUser)
+      .pipe(first())
+      .subscribe((user: any) => {
+        this.store.dispatch(new GetWorkout(user.email));
+      });
   }
 }

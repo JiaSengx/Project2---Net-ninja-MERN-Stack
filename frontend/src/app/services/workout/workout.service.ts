@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { WorkoutDTO } from '../models/workout-dto';
-import { Subject } from 'rxjs';
+import { WorkoutDTO } from '../../models/workout-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +13,8 @@ export class WorkoutService {
 
   constructor(private http: HttpClient) {}
 
-  getAllWorkouts() {
-    return this.http.get(`${this.url}`);
+  getAllWorkouts(email: string) {
+    return this.http.get(`${this.url}/${email}`);
   }
 
   addWorkout(workout: WorkoutDTO) {

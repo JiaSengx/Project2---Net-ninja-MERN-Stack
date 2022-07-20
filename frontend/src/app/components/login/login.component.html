@@ -10,18 +10,21 @@
       <i class="far fa-user login-input-icon"></i>
       <p class="form-error login-form glass-bg login-form-error" *ngIf="email.touched && email.errors?.required">*Email
         is a required field</p>
-      <p class="form-error login-form glass-bg login-form-error" *ngIf="email.touched && email.errors?.pattern">*This is not a valid
+      <p class="form-error login-form glass-bg login-form-error" *ngIf="email.touched && email.errors?.pattern">*This is
+        not a valid
         Email</p>
 
       <input type="password" id="password" name="password" placeholder="Password" class="login-input lightgrey" required
         ngModel #password="ngModel">
       <i class="fas fa-key login-input-icon"></i>
       <p class="form-error login-form glass-bg login-form-error" *ngIf="password.touched && password.errors?.required">
-        *Password is required</p>
+        *Password is required
+      </p>
 
+      <p class="form-error login-form glass-bg login-form-error" *ngIf="error$|async">{{ (error$|async)?.error }}</p>
       <div class="login-form login-form-button">
         <button type="submit" [disabled]="loginForm.invalid" [class.--disabled]="loginForm.invalid"
-          class="login-input login-text-large login-button">Login</button>
+          class="login-input login-text-large login-button"><i class="fas fa-sign-in-alt"></i> Login</button>
         <a routerLink="signup" class="login-text-small glass-bg login-link">Dont have account? Signup now</a>
       </div>
     </form>

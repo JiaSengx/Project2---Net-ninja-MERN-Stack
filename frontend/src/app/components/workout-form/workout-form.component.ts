@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
+import { AuthState } from 'src/app/store/auth/auth-state';
+import { WorkoutModel } from 'src/app/store/workout/workout-model';
 import { WorkoutState } from 'src/app/store/workout/workout-state';
 import { AddWorkout, ResetError } from '../../store/workout/workout-action';
 
@@ -34,8 +37,16 @@ export class WorkoutFormComponent implements OnInit {
     //   }
     // );
     if (workoutForm.valid) {
-      this.store.dispatch(new AddWorkout(workoutForm.value));
-      this.store.dispatch(new ResetError());
+      this.store
+        .select(AuthState.getUser)
+        .pipe(first())
+        .subscribe((user: any) => {
+          const { email } = user;
+          const workout: WorkoutModel = { email, ...workoutForm.value };
+
+          this.store.dispatch(new AddWorkout(workout));
+          this.store.dispatch(new ResetError());
+        });
       workoutForm.reset();
     }
   }

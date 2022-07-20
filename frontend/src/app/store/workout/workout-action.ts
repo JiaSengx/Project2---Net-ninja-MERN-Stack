@@ -2,7 +2,7 @@ import { WorkoutModel } from './workout-model';
 
 export class GetWorkout {
   static readonly type = '[WORKOUT] GET WORKOUT';
-  constructor() {}
+  constructor(public payload: string) {} //payload = logged in user email
 }
 
 export class AddWorkout {
@@ -12,7 +12,7 @@ export class AddWorkout {
 
 export class RemoveWorkout {
   static readonly type = '[WORKOUT] REMOVE WORKOUT';
-  constructor(public payload: string) {}
+  constructor(public payload: string) {} //payload = workout id
 }
 
 export class ResetError {

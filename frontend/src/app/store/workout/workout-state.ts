@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { WorkoutService } from '../../services/workout.service';
+import { WorkoutService } from '../../services/workout/workout.service';
 import {
   GetWorkout,
   AddWorkout,
@@ -46,19 +46,18 @@ export class WorkoutState {
   }
 
   @Action(GetWorkout)
-  getWorkouts({
-    getState,
-    patchState,
-    dispatch,
-  }: StateContext<WorkoutStateModel>) {
+  getWorkouts(
+    { getState, patchState, dispatch }: StateContext<WorkoutStateModel>,
+    { payload }: GetWorkout
+  ) {
     dispatch(new ToggleIsLoading());
-    return this.workoutService.getAllWorkouts().pipe(
+    return this.workoutService.getAllWorkouts(payload).pipe(
       tap((result: any) => {
         patchState({
           ...getState(),
           workouts: result,
         });
-         dispatch(new ToggleIsLoading());
+        dispatch(new ToggleIsLoading());
       })
     );
   }

@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { AuthState } from 'src/app/store/auth/auth-state';
+import { AppState } from 'src/app/store/core/app-state';
 import { WorkoutModel } from 'src/app/store/workout/workout-model';
-import { WorkoutState } from 'src/app/store/workout/workout-state';
-import { AddWorkout, ResetError } from '../../store/workout/workout-action';
+import { ResetError } from '../../store/core/app-action';
+import { AddWorkout } from '../../store/workout/workout-action';
 
 @Component({
   selector: 'app-workout-form',
@@ -15,7 +16,7 @@ import { AddWorkout, ResetError } from '../../store/workout/workout-action';
   styleUrls: ['./workout-form.component.scss'],
 })
 export class WorkoutFormComponent implements OnInit {
-  @Select(WorkoutState.getError)
+  @Select(AppState.getError)
   error$!: Observable<any>;
 
   // error: any = null;

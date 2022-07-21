@@ -6,11 +6,11 @@ import { throwError } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthModel } from './auth-model';
 import { Login, Logout, Signup } from './auth-action';
+import { ResetError, SetError } from '../core/app-action';
 
 interface AuthStateModel {
   user: AuthModel | null;
   jwtToken: string | null;
-  error: string | null;
 }
 
 @State<AuthStateModel>({
@@ -18,7 +18,6 @@ interface AuthStateModel {
   defaults: {
     user: null,
     jwtToken: null,
-    error: null,
   },
 })
 @Injectable()
@@ -35,18 +34,25 @@ export class AuthState {
     return !!state.jwtToken;
   }
 
-  @Selector()
-  static getError(state: AuthStateModel) {
-    return state.error;
-  }
-
   @Action(Signup)
-  signup({ patchState }: StateContext<AuthStateModel>, { payload }: Signup) {
-    return this.authService.signup(payload).pipe(catchError(this.errorHandle));
+  signup({ dispatch }: StateContext<AuthStateModel>, { payload }: Signup) {
+    return this.authService.signup(payload).pipe(
+      tap(
+        (_: any) => {
+          dispatch(new ResetError());
+        },
+        (err: any) => {
+          dispatch(new SetError(err.error));
+        }
+      )
+    );
   }
 
   @Action(Login)
-  login({ patchState }: StateContext<AuthStateModel>, { payload }: Login) {
+  login(
+    { patchState, dispatch }: StateContext<AuthStateModel>,
+    { payload }: Login
+  ) {
     return this.authService.login(payload).pipe(
       tap(
         ({ name, email, password, ...result }: any) => {
@@ -61,9 +67,7 @@ export class AuthState {
           });
         },
         (err: any) => {
-          patchState({
-            error: err.error,
-          });
+          dispatch(new SetError(err.error));
         }
       )
     );

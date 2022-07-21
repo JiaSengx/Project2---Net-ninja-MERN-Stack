@@ -17,6 +17,7 @@ import {
 } from '../../app.animation';
 import { AuthState } from 'src/app/store/auth/auth-state';
 import { first } from 'rxjs/operators';
+import { AppState } from 'src/app/store/core/app-state';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
   @Select(WorkoutState.getWorkouts)
   workouts2$!: Observable<WorkoutModel[]>;
 
-  @Select(WorkoutState.getIsLoading)
+  @Select(AppState.getIsLoading)
   isLoading$!: Observable<boolean>;
 
   constructor(private store: Store) {

@@ -4,28 +4,23 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 
 import { WorkoutService } from '../../services/workout/workout.service';
+import { SetError, ToggleIsLoading } from '../core/app-action';
 import {
   GetWorkout,
   AddWorkout,
   RemoveWorkout,
-  ResetError,
-  ToggleIsLoading,
   UpdateWorkout,
 } from './workout-action';
 import { WorkoutModel } from './workout-model';
 
 interface WorkoutStateModel {
   workouts: WorkoutModel[];
-  error: any;
-  isLoading: boolean;
 }
 
 @State<WorkoutStateModel>({
   name: 'workout',
   defaults: {
     workouts: [],
-    error: '',
-    isLoading: false,
   },
 })
 @Injectable()
@@ -35,16 +30,6 @@ export class WorkoutState {
   @Selector()
   static getWorkouts(state: WorkoutStateModel) {
     return state.workouts;
-  }
-
-  @Selector()
-  static getError(state: WorkoutStateModel) {
-    return state.error;
-  }
-
-  @Selector()
-  static getIsLoading(state: WorkoutStateModel) {
-    return state.isLoading;
   }
 
   @Action(GetWorkout)
@@ -66,7 +51,7 @@ export class WorkoutState {
 
   @Action(AddWorkout)
   addWorkout(
-    { getState, patchState }: StateContext<WorkoutStateModel>,
+    { getState, patchState, dispatch }: StateContext<WorkoutStateModel>,
     { payload }: AddWorkout
   ) {
     return this.workoutService.addWorkout(payload).pipe(
@@ -77,9 +62,7 @@ export class WorkoutState {
           });
         },
         (err: any) => {
-          patchState({
-            error: err.error,
-          });
+          dispatch(new SetError(err.error));
         }
       )
     );
@@ -110,9 +93,7 @@ export class WorkoutState {
           );
         },
         (err: any) => {
-          ctx.patchState({
-            error: err.error,
-          });
+          ctx.dispatch(new SetError(err.error));
         }
       )
     );
@@ -120,7 +101,7 @@ export class WorkoutState {
 
   @Action(RemoveWorkout)
   removeWorkout(
-    { getState, patchState }: StateContext<WorkoutStateModel>,
+    { getState, patchState, dispatch }: StateContext<WorkoutStateModel>,
     { payload }: RemoveWorkout
   ) {
     return this.workoutService.deleteWorkout(payload).pipe(
@@ -133,25 +114,9 @@ export class WorkoutState {
           });
         },
         (err: any) => {
-          patchState({
-            error: err.error.error,
-          });
+          dispatch(new SetError(err.error));
         }
       )
     );
-  }
-
-  @Action(ResetError)
-  resetError({ patchState }: StateContext<WorkoutStateModel>) {
-    patchState({
-      error: null,
-    });
-  }
-
-  @Action(ToggleIsLoading)
-  toggleIsLoading({ getState, patchState }: StateContext<WorkoutStateModel>) {
-    patchState({
-      isLoading: !getState().isLoading,
-    });
   }
 }

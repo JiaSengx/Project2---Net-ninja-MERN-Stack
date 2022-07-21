@@ -38,6 +38,10 @@ const createUser = async (req, res) => {
       .status(400)
       .json({ error: 'Please fill in all the fields', emptyFields });
 
+  const isUniqueEmail = await AuthModel.findOne({ email });
+  if (isUniqueEmail)
+    return res.status(400).json({ error: 'Email address already exist.' });
+
   try {
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(password, salt);

@@ -6,7 +6,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Login } from 'src/app/store/auth/auth-action';
-import { AuthState } from 'src/app/store/auth/auth-state';
+import { ResetError } from 'src/app/store/core/app-action';
+import { AppState } from 'src/app/store/core/app-state';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { AuthState } from 'src/app/store/auth/auth-state';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Select(AuthState.getError)
+  @Select(AppState.getError)
   error$!: Observable<any>;
 
   constructor(private store: Store, private router: Router) {}
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
         .dispatch(new Login(loginForm.value))
         .pipe(first())
         .subscribe((_: any) => {
+          this.store.dispatch(new ResetError());
           this.router.navigate(['home']);
         });
     }

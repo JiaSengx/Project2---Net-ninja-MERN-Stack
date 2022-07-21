@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { AuthDTO } from 'src/app/models/auth-dto';
+import { Signup } from 'src/app/store/auth/auth-action';
+import { AppState } from 'src/app/store/core/app-state';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,13 +14,26 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  constructor() {}
+  @Select(AppState.getError)
+  error$!: Observable<any>;
+
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(signupForm: NgForm) {
     if (signupForm.valid) {
-      
+      const [name] = signupForm.controls.email.value.split('@');
+      const payload: AuthDTO = {
+        name,
+        ...signupForm.value,
+      };
+      this.store
+        .dispatch(new Signup(payload))
+        .pipe(first())
+        .subscribe((_: any) => {
+          this.router.navigate(['/']);
+        });
     }
   }
 }

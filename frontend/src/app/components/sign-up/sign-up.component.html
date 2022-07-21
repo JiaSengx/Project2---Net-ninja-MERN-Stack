@@ -8,17 +8,21 @@
       <input type="email" id="email" name="email" placeholder="Email" class="signup-input lightgrey" required ngModel
         #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
       <i class="far fa-user signup-input-icon"></i>
-      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.required">*Email
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.required">
+        *Email
         is a required field</p>
-      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.pattern">*This is not a valid
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="email.touched && email.errors?.pattern">*This
+        is not a valid
         Email</p>
 
-      <input type="password" id="password" name="password" placeholder="Password" class="signup-input lightgrey" required
-        ngModel #password="ngModel">
+      <input type="password" id="password" name="password" placeholder="Password" class="signup-input lightgrey"
+        required ngModel #password="ngModel">
       <i class="fas fa-key signup-input-icon"></i>
-      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="password.touched && password.errors?.required">
+      <p class="form-error signup-form glass-bg signup-form-error"
+        *ngIf="password.touched && password.errors?.required">
         *Password is required</p>
 
+      <p class="form-error signup-form glass-bg signup-form-error" *ngIf="error$|async">{{ (error$|async)?.error }}</p>
       <div class="signup-form signup-form-button">
         <button type="submit" [disabled]="signupForm.invalid" [class.--disabled]="signupForm.invalid"
           class="signup-input signup-text-large signup-button">Sign up</button>

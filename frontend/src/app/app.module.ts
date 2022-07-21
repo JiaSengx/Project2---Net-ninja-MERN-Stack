@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthState } from './store/auth/auth-state';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { WorkoutEditFormComponent } from './components/workout-edit-form/workout-edit-form.component';
+import { AppState } from './store/core/app-state';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { WorkoutEditFormComponent } from './components/workout-edit-form/workout
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    NgxsModule.forRoot([WorkoutState, AuthState]),
+    NgxsModule.forRoot([WorkoutState, AuthState, AppState]),
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     BrowserAnimationsModule,

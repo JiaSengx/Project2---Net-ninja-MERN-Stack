@@ -22,6 +22,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { AppRoutingModule } from './app-routing.module';
 import { AuthState } from './store/auth/auth-state';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { WorkoutEditFormComponent } from './components/workout-edit-form/workout-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
     LoginComponent,
     HomeComponent,
     ErrorPageComponent,
+    WorkoutEditFormComponent,
   ],
   imports: [
     BrowserModule,

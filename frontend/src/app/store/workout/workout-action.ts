@@ -10,6 +10,11 @@ export class AddWorkout {
   constructor(public payload: WorkoutModel) {}
 }
 
+export class UpdateWorkout {
+  static readonly type = '[WORKOUT] UPDATE WORKOUT';
+  constructor(public workoutId: string, public payload: WorkoutModel) {}
+}
+
 export class RemoveWorkout {
   static readonly type = '[WORKOUT] REMOVE WORKOUT';
   constructor(public payload: string) {} //payload = workout id

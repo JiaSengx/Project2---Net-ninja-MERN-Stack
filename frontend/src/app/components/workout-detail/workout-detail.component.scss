@@ -15,5 +15,13 @@
 }
 
 .workout-details span:hover {
-  background: #f1f1f1;
+  background: rgba(217, 30, 24, 0.5);
+}
+
+.workout-details span.edit:hover {
+  background: rgba(72, 113, 247, 0.5);
+}
+
+.workout-details:hover {
+  box-shadow: 0 8px 32px 0 rgba(18, 31, 225, 0.37);
 }

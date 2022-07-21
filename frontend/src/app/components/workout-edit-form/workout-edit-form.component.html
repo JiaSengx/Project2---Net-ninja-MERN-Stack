@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="glass-container glass-bg">
+    <form @fade-in class="create" #workoutEditForm="ngForm" (ngSubmit)="onSubmit(workoutEditForm)">
+      <h3>Edit Workout</h3>
+
+      <div>
+        <label for="title">Exercise Title:</label>
+        <input type="text" id="title" name="title" class="workout-edit-input lightgrey" [ngModel]="entry.title" />
+      </div>
+
+      <div>
+        <label for="load">Load (in kg):</label>
+        <input type="number" id="load" name="load" ngModel class="workout-edit-input lightgrey"
+          [ngModel]="entry.load" />
+      </div>
+
+      <div>
+        <label for="reps">Reps:</label>
+        <input type="number" id="reps" name="reps" ngModel class="workout-edit-input lightgrey"
+          [ngModel]="entry.reps" />
+      </div>
+
+      <div class="workout-edit-button-group">
+        <button type="submit" class="workout-edit-input workout-edit-text-large workout-edit-button">
+          <i class="fas fa-edit"></i>
+          Update
+        </button>
+
+        <button type="button" class="workout-edit-input workout-edit-text-large glass-bg" (click)="onCancelEdit()">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

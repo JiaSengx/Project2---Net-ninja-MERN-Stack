@@ -21,6 +21,10 @@ export class WorkoutService {
     return this.http.post(`${this.url}`, workout);
   }
 
+  updateWorkout(workoutId: string, workout: WorkoutDTO) {
+    return this.http.patch(`${this.url}/${workoutId}`, workout);
+  }
+
   deleteWorkout(workoutId: string) {
     return this.http.delete(`${this.url}/${workoutId}`);
   }

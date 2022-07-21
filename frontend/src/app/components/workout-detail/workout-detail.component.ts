@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { RemoveWorkout } from 'src/app/store/workout/workout-action';
 
@@ -10,7 +11,7 @@ import { RemoveWorkout } from 'src/app/store/workout/workout-action';
 export class WorkoutDetailComponent implements OnInit {
   @Input('workout') workout: any;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +20,9 @@ export class WorkoutDetailComponent implements OnInit {
     // this.workoutService.deleteWorkout(workoutId).subscribe((data: any) => {
     //   this.workoutService.onNewWorkoutSubject.next(true);
     // });
+  }
+
+  onEditWorkout(workoutId: string) {
+    this.router.navigate(['/edit', workoutId]);
   }
 }

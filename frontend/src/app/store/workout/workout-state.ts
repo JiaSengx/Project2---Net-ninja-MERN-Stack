@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, Selector } from '@ngxs/store';
+import { patch, updateItem } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 
 import { WorkoutService } from '../../services/workout/workout.service';
@@ -9,6 +10,7 @@ import {
   RemoveWorkout,
   ResetError,
   ToggleIsLoading,
+  UpdateWorkout,
 } from './workout-action';
 import { WorkoutModel } from './workout-model';
 
@@ -76,6 +78,39 @@ export class WorkoutState {
         },
         (err: any) => {
           patchState({
+            error: err.error,
+          });
+        }
+      )
+    );
+  }
+
+  @Action(UpdateWorkout)
+  updateWorkout(
+    ctx: StateContext<WorkoutStateModel>,
+    { workoutId, payload }: UpdateWorkout
+  ) {
+    return this.workoutService.updateWorkout(workoutId, payload).pipe(
+      tap(
+        (result: any) => {
+          const updatedWorkout = {
+            ...ctx
+              .getState()
+              .workouts.find((workout) => workout._id == workoutId),
+            ...payload,
+          };
+
+          ctx.setState(
+            patch({
+              workouts: updateItem<WorkoutModel>(
+                (workout) => workout?._id === workoutId,
+                updatedWorkout
+              ),
+            })
+          );
+        },
+        (err: any) => {
+          ctx.patchState({
             error: err.error,
           });
         }

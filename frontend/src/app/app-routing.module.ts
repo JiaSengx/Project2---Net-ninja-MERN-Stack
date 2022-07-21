@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { WorkoutEditFormComponent } from './components/workout-edit-form/workout-edit-form.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const appRoute: Routes = [
@@ -15,6 +16,11 @@ const appRoute: Routes = [
       ),
   },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'edit/:workoutId',
+    component: WorkoutEditFormComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error' },
 ];

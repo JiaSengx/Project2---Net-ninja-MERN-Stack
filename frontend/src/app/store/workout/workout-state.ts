@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext, Selector } from '@ngxs/store';
 import { patch, updateItem } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
+import { ServiceEnum } from 'src/app/shared/enum/services-enum';
+import { FacadeService } from 'src/app/shared/services/facade/facade.service';
 
 import { WorkoutService } from '../../services/workout/workout.service';
 import { SetError, ToggleIsLoading } from '../core/app-action';
@@ -25,7 +27,10 @@ interface WorkoutStateModel {
 })
 @Injectable()
 export class WorkoutState {
-  constructor(private workoutService: WorkoutService) {}
+  constructor(
+    private workoutService: WorkoutService,
+    private facadeService: FacadeService
+  ) {}
 
   @Selector()
   static getWorkouts(state: WorkoutStateModel) {
@@ -38,7 +43,9 @@ export class WorkoutState {
     { payload }: GetWorkout
   ) {
     dispatch(new ToggleIsLoading());
-    return this.workoutService.getAllWorkouts(payload).pipe(
+
+    const subApiUrl = `workouts/${payload}`;
+    return this.facadeService.getRecords(ServiceEnum.WORKOUT, subApiUrl).pipe(
       tap((result: any) => {
         patchState({
           ...getState(),
@@ -47,6 +54,16 @@ export class WorkoutState {
         dispatch(new ToggleIsLoading());
       })
     );
+
+    // return this.workoutService.getAllWorkouts(payload).pipe(
+    //   tap((result: any) => {
+    //     patchState({
+    //       ...getState(),
+    //       workouts: result,
+    //     });
+    //     dispatch(new ToggleIsLoading());
+    //   })
+    // );
   }
 
   @Action(AddWorkout)

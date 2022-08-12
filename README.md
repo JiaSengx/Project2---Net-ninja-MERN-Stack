@@ -1,6 +1,6 @@
 # Project2---Net-ninja-MERN-Stack
 
-Project build follow Net-ninja-MERN-Stack tutorial. However the frontend had change to Angular
+This Project is build base on Net-ninja-MERN-Stack tutorial. However the frontend is using Angular
 
 Please update ```MONGO_URI``` in ```backend/.env``` with your own mongo db connection
 
